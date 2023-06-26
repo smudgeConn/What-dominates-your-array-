@@ -1,0 +1,29 @@
+def dominator(arr):
+    if arr == []:
+        return -1
+    if len(arr) == 1:
+        return arr
+    arr.sort()
+#     print(arr)
+    half = len(arr)/2
+    current_num = 0
+    count = 0
+    high_num = 0
+    high_count = 0
+    for num in arr:
+        if num == current_num:
+            count += 1
+            if count > high_count:
+                high_num = current_num
+                high_count = count
+        else:
+            if count > high_count:
+                high_num = current_num
+                high_count = count
+            current_num = num
+            count = 1
+    print(arr, high_count, half, high_num)
+    if high_count > half:
+        return high_num
+    else:
+        return -1
